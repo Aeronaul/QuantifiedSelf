@@ -1,5 +1,5 @@
 # Quantified Self (Python)
-A web app to track your habits.
+A web app to track your habits made with Python and Flask, with jinja templating.
 
 ## Quantified Self Screenshot
 ![Tic-tac-toe screenshot](screenshot.jpg?raw=true)
