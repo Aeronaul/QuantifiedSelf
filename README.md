@@ -65,7 +65,7 @@ python run.py
 ## Usage
 - The login page has a username and password field, while the register page has another field for confirming the password. Once registered, the user can directly sign in from the login page.
 - On the main dashboard there is a list of trackers and the time of last entry in each tracker. There are also a few actions available like editing and deleting trackers.
-- Below there is a large button for adding new trackers which takes to a new page for specifying the name and type of tracker (numeric, yes/no or MCQ.)
+- Below there is a large button for adding new trackers which takes to a new page for specifying the name and type of tracker (numeric, yes/no or multiple choice.)
 - Depending on which type you choose for the trackers, it will change the type of input presented when making the logs.
 - To access the previous logs and graphs, the user has to click on the name of the trackers on the dashboard (they are hyperlinks.) This takes the user to the tracker page.
 - On the tracker page, the user is presented with a graph plotting the values entered by the user over time (ie. dates).
