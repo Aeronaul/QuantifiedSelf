@@ -1,14 +1,33 @@
-# Quantified-Self (Python)
+# Quantified Self (Python)
 A web app to track your habits.
 
-## Quantified-Self Screenshot
+## Quantified Self Screenshot
 ![Tic-tac-toe screenshot](screenshot.jpg?raw=true)
 
 ## Features
-- Play against the computer: Challenge the computer and test your Tic-Tac-Toe skills.
-- Play against another human player: Enjoy the game with a friend or family member.
-- Watch the computer play against itself: Observe the computer playing both X and O positions.
-- Easy-to-use graphical interface: The game board and controls are displayed using Java Swing components.
+- User Authentication:
+  - Login page with username and password fields.
+  - Register page with additional field for confirming the password.
+  - Users can directly sign in from the login page after registering.
+- Main Dashboard:
+  - Displays a list of trackers and the time of the last entry in each tracker.
+  - Actions available: editing and deleting trackers.
+- Adding New Trackers:
+  - Large button on the main dashboard for adding new trackers.
+  - Takes the user to a new page to specify the name and type of the tracker (numeric, yes/no, or MCQ).
+  - The input presentation changes based on the chosen tracker type.
+- Accessing Previous Logs and Graphs:
+  - Trackers' names on the dashboard are hyperlinks that take the user to the respective tracker page.
+  - Tracker page displays a graph plotting the user's entered values over time (dates).
+- Data Retrieval and Graph Generation:
+  - The app retrieves stored data from the database.
+  - Passes the data to a function from the Matplotlib library to create a graph.
+  - The graph is stored in the 'static' folder along with other image resources.
+- Tracker Page:
+  - Below the graph, there is a table of records made by the user.
+  - Provides options to edit or delete records on the right column.
+- Tracker Editing and New Entry:
+  - Tracker page includes buttons for editing the tracker and making a new entry.
 
 ## Getting Started
 To get a local copy of the project up and running on your machine, follow these steps:
