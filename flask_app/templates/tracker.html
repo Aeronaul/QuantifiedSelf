@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tracker
+{% endblock %}
+
+{% block content %}
+
+<div class="pt-5 text-center">
+    <h1 class="display-3">{{ activity }} Tracker</h1>
+</div>
+
+<!--<img class="mx-auto d-block"-->
+<!--     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.math-only-math.com%2Fimages%2Fline-graph.png&f=1&nofb=1">-->
+<img class="mx-auto d-block"
+     src="{{ url_for('static', filename=graph_img) }}">
+
+<section class="pt-5">
+    <div class="container pt-1 py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div>
+                <div class="card bg-light text-grey" style="border-radius: 0.5rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="text-start pb-3">
+                            <h1 class="display-3">Logs</h1>
+                        </div>
+
+                        <table class="table table-bordered ">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Notes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for log in log_entries %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ log.date }}</td>
+                                <td>{{ log.time }}</td>
+                                <td>{{ log.value }}</td>
+                                <td>{{ log.notes }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-outline-dark dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                aria-expanded="false">Actions
+
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item"
+                                                   href="{{ url_for('edit_log', id=log.log_id) }}">Edit</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="{{ url_for('delete_log', id=log.log_id) }}">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="d-flex py-4 justify-content-end">
+                            <div class="d-inline-block pe-2">
+                                <a href="{{ url_for('edit_tracker', name=activity) }}">
+                                    <button class="btn btn-outline-dark btn-lg" type="button">Edit Tracker
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="d-inline-block">
+                                <a href="{{ url_for('logger', t_activity=activity) }}">
+                                    <button class="btn btn-outline-dark btn-lg" type="button">Add Entry
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

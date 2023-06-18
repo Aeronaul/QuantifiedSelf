@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Tracker
+{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=false) %}
+{% if messages%}
+{% for message in messages %}
+<div class="alert alert-danger">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('add_tracker') }}">
+    <div class="p-5">
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_name_ID">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tracker_name" id="tracker_name_ID">
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_unit_ID">Unit</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tracker_unit" id="tracker_unit_ID">
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_desc_ID">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="tracker_desc" id="tracker_desc_ID" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_type_ID">Tracker Type</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tracker_type" id="tracker_type_ID" onchange="toggle_options(this)">
+                    <option>Numeric</option>
+                    <option>Yes/No</option>
+                    <option>Multiple Choice</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="mcq_ID">Options</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="tracker_options" id="mcq_ID" rows="3" disabled></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-end ms-2">Add Tracker</button>
+        <a href="{{ url_for('login') }}">
+            <button type="button" class="btn btn-secondary float-end">Cancel</button>
+        </a>
+    </div>
+</form>
+
+<script>
+    function toggle_options(sel) {
+    var selection = sel.options[sel.selectedIndex].text
+    if (selection == "Multiple Choice") {
+    document.getElementById("mcq_ID").disabled = false;
+    } else {
+    document.getElementById("mcq_ID").value = "";
+    document.getElementById("mcq_ID").disabled = true;
+    }
+    }
+
+
+</script>
+
+{% endblock %}
+
+

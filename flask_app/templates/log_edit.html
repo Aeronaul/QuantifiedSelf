@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Log
+{% endblock %}
+
+{% block content %}
+<div class="p-3">
+    <h1 class="display-3">{{ activity }}</h1>
+    <h1 class="display-5 text-muted">Log Entry</h1>
+</div>
+
+<form method="post" action="{{ url_for('edit_log', id=id) }}">
+    <div class="p-5">
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="logger_time_ID">Date</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="date" id="logger_date_ID" value="{{v_date}}">
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="logger_time_ID">Time</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="time" id="logger_time_ID" value="{{v_time}}">
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="logger_value_ID">Value</label>
+            <div class="col-sm-10">
+                {% if tracker_type == 1 %}
+                <input type="text" class="form-control" name="value" id="logger_value_ID" value="{{v_val}}">
+                {% elif tracker_type == 2 %}
+                <input class="form-check-input" type="radio" name="value" value="Yes" id="flexRadioDefaultA" {% if v_val=='Yes'%}checked {%endif%}>
+                <label class="form-check-label" for="flexRadioDefaultA">
+                    Yes
+                </label>
+                <input class="form-check-input" type="radio" name="value" value="No" id="flexRadioDefaultB" {% if v_val=='No'%}checked {%endif%}>
+                <label class="form-check-label" for="flexRadioDefaultB">
+                    No
+                </label>
+                {% elif tracker_type == 3 %}
+
+                {% for option in tracker_options %}
+
+                <input class="form-check-input" type="radio" name="value" value="{{ option }}" id="flexRadioDefault{{loop.index}}" {% if option == v_val %} checked {% endif %}>
+                <label class="form-check-label" for="flexRadioDefault{{loop.index}}">
+                    {{ option }}
+                </label>
+
+                {% endfor %}
+
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="logger_notes_ID">Notes</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="notes" id="logger_notes_ID" rows="3">{{v_notes}}</textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-end ms-2">Edit Log</button>
+        <a href="{{ url_for('tracker', t_activity=activity) }}">
+            <button type="button" class="btn btn-secondary float-end">Cancel</button>
+        </a>
+    </div>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=false) %}
+{% if messages%}
+{% for message in messages %}
+<div class="alert alert-danger fixed-bottom">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<script>
+    function toggle_options(sel) {
+    var selection = sel.options[sel.selectedIndex].text
+    if (selection == "Multiple Choice") {
+    document.getElementById("mcq_ID").disabled = false;
+    } else {
+    document.getElementById("mcq_ID").value = "";
+    document.getElementById("mcq_ID").disabled = true;
+    }
+    }
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Tracker
+{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=false) %}
+{% if messages%}
+{% for message in messages %}
+<div class="alert alert-danger">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('edit_tracker', name=val_name) }}">
+    <div class="p-5">
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_name_ID">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tracker_name" id="tracker_name_ID" value="{{ val_name }}">
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_desc_ID">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="tracker_desc" id="tracker_desc_ID" rows="3">{{ val_desc }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="tracker_type_ID">Tracker Type</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tracker_type" id="tracker_type_ID" onchange="toggle_options(this)">
+                    <option {% if val_type == 1 %} selected {% endif %}>Numeric</option>
+                    <option {% if val_type == 2 %} selected {% endif %}>Yes/No</option>
+                    <option {% if val_type == 3 %} selected {% endif %}>Multiple Choice</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="mcq_ID">Options</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="tracker_options" id="mcq_ID" rows="3" {% if val_type != 3 %} disabled {% endif %}>{{ val_options }}</textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-end ms-2">Edit Tracker</button>
+        <a href="{{ url_for('login') }}">
+            <button type="button" class="btn btn-secondary float-end">Cancel</button>
+        </a>
+    </div>
+</form>
+
+<script>
+    function toggle_options(sel) {
+    var selection = sel.options[sel.selectedIndex].text
+    if (selection == "Multiple Choice") {
+    document.getElementById("mcq_ID").disabled = false;
+    } else {
+    document.getElementById("mcq_ID").value = "";
+    document.getElementById("mcq_ID").disabled = true;
+    }
+    }
+
+
+</script>
+
+{% endblock %}
+
+
