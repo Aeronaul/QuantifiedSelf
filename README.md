@@ -14,7 +14,7 @@ A web app to track your habits.
   - Actions available: editing and deleting trackers.
 - Adding New Trackers:
   - Large button on the main dashboard for adding new trackers.
-  - Takes the user to a new page to specify the name and type of the tracker (numeric, yes/no, or MCQ).
+  - Takes the user to a new page to specify the name and type of the tracker (numeric, yes/no, or multiple choice).
   - The input presentation changes based on the chosen tracker type.
 - Accessing Previous Logs and Graphs:
   - Trackers' names on the dashboard are hyperlinks that take the user to the respective tracker page.
