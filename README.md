@@ -37,7 +37,7 @@ To get a local copy of the project up and running on your machine, follow these 
 - Pip
 - Git
 
-### Installation
+### Build & Run
 1. Clone the repository:
 ```
 git clone https://github.com/Aeronaul/QuantifiedSelf_Python.git
