@@ -2,7 +2,7 @@
 A web app to track your habits made with Python and Flask, with Jinja templating.
 
 ## Quantified Self Screenshot
-![Tic-tac-toe screenshot](screenshot.jpg?raw=true)
+![Quantified Self screenshot](screenshot.jpg?raw=true)
 
 ## Features
 - User Authentication:
