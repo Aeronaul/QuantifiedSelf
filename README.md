@@ -74,7 +74,7 @@ python run.py
 - On the tracker page, the user can also scroll down to find two buttons for editing the tracker and making a new entry.
 
 ## Acknowledgements
-The Python programming language and Flask module.
+The Python programming language, Flask module and Bootstrap.
 
 ## Contact
 For any questions or inquiries, please contact me at: aeronaul@proton.me.
